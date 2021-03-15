@@ -15,6 +15,10 @@ class Student {
         this.id = id;
         this.name = name;
     }
+    // Returns student details as a HTML table row.
+    tableRow() {
+        return `<tr><td>${this.id}</td><td>${this.name}</td></tr>`;
+    }
 }
 
 // An array of students.
@@ -24,14 +28,21 @@ var students = [
     new Student("003", "Arturo Araujo")];
 
 function printStudents() {
-    // Build text to display
-    var text = "";
+    // Build html for table.
+    var html = 
+        `<table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>`;  
     // Iterate over all the students
     for (var student of students) {
-        text = text + student.id + ": " + student.name + "<br>";
+        html += student.tableRow();
     }
+    // End html table.
+    html += `</table>`
     // Get the main element
     var main = document.getElementById("main");
     // Set the innerHTML = text;
-    main.innerHTML = text;
+    main.innerHTML = html;
 } 
