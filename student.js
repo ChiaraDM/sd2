@@ -74,14 +74,25 @@ class Student {
 
 }
 
+// Dictionary of Programmes
+var programmes = {
+    "Comp" : new Programme("001", "Computing"),
+    "SoftEng" : new Programme("002", "Software Engineering"),
+    "Phys" : new Programme("003", "Physics"),
+    "ForLang" : new Programme("004", "Foreign Languages")
+};
 // An array of students.
 var students = [
-    new Student("001", "Kevin Chalmers", new Programme("001", "Software Engineering")),
-    new Student("002", "Lisa Haskel", new Programme("002", "Computing")),
-    new Student("003", "Arturo Araujo", new Programme("003", "Physics")),
-    new Student("004", "Chiara De Matteis", new Programme("004", "Foreign Languages"))];
+    new Student("001", "Kevin Chalmers", programmes["SoftEng"]),
+    new Student("002", "Lisa Haskel", programmes["Comp"]),
+    new Student("003", "Arturo Araujo", programmes["Phys"]),
+    new Student("004", "Chiara De Matteis", programmes["ForLang"])
+];
 
-students[i].name
+//students[i].name
+
+// Change the name of Comp programme to Computer Science
+programmes["Comp"].name = "Computer Science";
 
 function printStudents() {
    
