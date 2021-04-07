@@ -69,7 +69,12 @@ class Student {
     }
     // Returns student details as a HTML table row.
     tableRow() {
+        // console.log(this.#id, this.#name, this.#programme.name)
         return `<tr><td>${this.#id}</td><td>${this.#name}</td><td>${this.#programme.name}</td></tr>`;
+    }
+
+    tableRow1() {
+        return `<tr><td>${this.#name}</td><td>${this.#id}</td><td>${this.#programme.name}</td></tr>`;
     }
 
 }
@@ -108,6 +113,7 @@ function printStudents() {
           
     // Iterate over all the students
     for (var student of students) {
+        // console.log('students: ', students)
         html += student.tableRow();
     }
     // End html table.
@@ -119,7 +125,8 @@ function printStudents() {
         <th>Programme</th>
     </tr>` + "<br>";
     for (var student of students) {
-        html += student.tableRow();
+        html += student.tableRow1();
+       // console.log(student.name, student.id)
     }
         
     // End html table.
@@ -130,3 +137,23 @@ function printStudents() {
     // Set the innerHTML to html;
     main.innerHTML = html;
 } 
+
+function addStudent() {
+    // Get the value in the student ID textbox.
+    var id = document.getElementById("studentID").value;
+    // Get the value in the student name textbox.
+    var name = document.getElementById("studentName").value;
+    // Get the value in the student programme textbox.
+    var programme = document.getElementById("studentProgramme").value;
+    // Clear the textboxes
+    document.getElementById("studentID").value = "";
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentProgramme").value = "";
+    // Create the student object
+    // We lookup the programme from the programmes dictionary.
+    var student = new Student(id, name, programmes[programme]);
+    // Add the student to the student array
+    students.push(student);
+    // Redisplay the table
+    printStudents();
+}
