@@ -30,6 +30,25 @@ db.each(sql, function(err, row) {
     console.log(row.code + "\t" + row.name);
 });
 
+var sql = "SELECT * FROM Student";
+db.each(sql, function(err, row) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(row.id + "\t" + row.name);
+});
+
+var sql = "SELECT * From Programmes";
+db.each(sql, function(err, row) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(row.id + "\t" + row.name);
+});
+
+// Finish the Complex Query
+//var sql = "SELECT Modules.name FROM Programmes, Modules, Programme_Modules WHERE Programmes.name = \"BSc Computer Science\" AND Programme_Modules.programme = Programmes.id AND Programme_Modules.module = Modules.code";
+
 // Close the database connection. 
 // Always close the connection when you are finished with it.
 // Function is callback when connection is closed.
