@@ -41,6 +41,15 @@ db.all(sql, function(err, rows) {
     }
 });
 
+var sql = "SELECT * FROM Modules";
+// Execute SQL query, and run function on first row.
+db.get(sql, function(err, row) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(`1st Query .get:`, row.code + "\t" + row.name);
+});
+
 var sql = "SELECT * FROM Student";
 db.each(sql, function(err, row) {
     if (err) {
