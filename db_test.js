@@ -26,7 +26,19 @@ db.each(sql, function(err, row) {
         return console.error(err.message);
     }
     // Print the code column and name column from row separated by a tab \t
-    console.log(`1st Query:`, row.code + "\t" + row.name);
+    console.log(`1st Query .each:`, row.code + "\t" + row.name);
+});
+
+var sql = "SELECT * FROM Modules";
+// Execute SQL query, and run function with all rows.
+db.all(sql, function(err, rows) {
+    // If error display
+    if (err) {
+        return console.error(err.message);
+    }
+    for (var row of rows) {
+        console.log(`1st Quesry .all:`, row.code + "\t" + row.name);
+    }
 });
 
 var sql = "SELECT * FROM Student";
