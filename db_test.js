@@ -15,19 +15,18 @@ let db = new sqlite3.Database("students.db", function(err) {
 
 // SQL query to run
 var sql = "SELECT * FROM Modules";
-
 // Execute SQL query, and run function on every row returned.
 // db.each (PSEUDOCODE)
 // rows = EXECUTE QUERY ON Database
 // FOR EACH row IN rows
 // PRINT row["code"] TAB row["name"]
 db.each(sql, function(err, row) {
-    // If error display
+    //If error display
     if (err) {
         return console.error(err.message);
     }
     // Print the code column and name column from row separated by a tab \t
-    console.log(row.code + "\t" + row.name);
+    console.log(`1st Query:`, row.code + "\t" + row.name);
 });
 
 var sql = "SELECT * FROM Student";
@@ -35,7 +34,7 @@ db.each(sql, function(err, row) {
     if (err) {
         return console.error(err.message);
     }
-    console.log(row.id + "\t" + row.name);
+    console.log(`2nd Query:`, row.id + "\t" + row.name);
 });
 
 var sql = "SELECT * From Programmes";
@@ -43,11 +42,16 @@ db.each(sql, function(err, row) {
     if (err) {
         return console.error(err.message);
     }
-    console.log(row.id + "\t" + row.name);
+    console.log(`3rd Query:`, row.id + "\t" + row.name);
 });
 
-// Finish the Complex Query
-//var sql = "SELECT Modules.name FROM Programmes, Modules, Programme_Modules WHERE Programmes.name = \"BSc Computer Science\" AND Programme_Modules.programme = Programmes.id AND Programme_Modules.module = Modules.code";
+var sql = "SELECT Modules.name FROM Programmes, Modules, Programme_Modules WHERE Programmes.name = \"BSc Computer Science\" AND Programme_Modules.programme = Programmes.id AND Programme_Modules.module = Modules.code";
+db.each(sql, function(err, row) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(`4th Query:`, row.name);
+});
 
 // Close the database connection. 
 // Always close the connection when you are finished with it.
