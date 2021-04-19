@@ -20,5 +20,14 @@ app.get("/hello/:name", function(req, res) {
     res.send("Hello " + req.params.name);
 });
 
+app.get("/test", function(req, res) {
+    res.send("Welcome to the test page!");
+});
+
+app.get("/student/:id/:name", function(req, res) {
+    // req.params contains any parameters in the request
+    res.send("Hello " + req.params.id + " " + req.params.name);
+});
+
 // Start server on port 3000
 app.listen(3000);
