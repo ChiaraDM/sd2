@@ -22,26 +22,6 @@ var app = express();
 // Add static files location
 app.use(express.static("static"));
 
-// Create a get for /student
-// (debug) function eventFunction(req,res) {
-    // (debug) console.log("Hello");
-    // Added "" because the id is a string in my db
-    //var sql = `SELECT * FROM Student WHERE id = "${req.params.id}"`;
-    // (debug) function dbEventFunction(err, row) {
-        // (debug) console.log("Before");
-      //  if (err) {
-       //     return console.error(err.message);
-    //    }
-      //  res.json(row);
-        // console.log('value: ', row)
-        // console.log('error ', err)
-        // console.log('sql: ', sql)
-        // console.log("After");
-   // }
-    // db.get(sql, dbEventFunction);
-    // console.log("Chiara");
-//};
-
 app.get("/student/:id", function(req, res) {
     var sql = `SELECT * FROM Student WHERE id = "${req.params.id}"`;
     db.get(sql, function(err, row) {
@@ -51,6 +31,29 @@ app.get("/student/:id", function(req, res) {
         res.json(row);
     })
 })
+
+// Get a programme of a given id
+app.get("/programme/:id", function(req, res) {
+    var sql = `SELECT * FROM Programmes WHERE id = "${req.params.id}"`;
+    db.get(sql, function(err, row) {
+        if (err) {
+            return console.error(err.message);
+            }
+            res.json(row);
+    })
+})
+
+// Get all programmes
+app.get("/programmes", function(req, res) {
+    var sql = "SELECT * FROM Programmes";
+    db.all(sql, function(err, rows) {
+        if (err) {
+            return console.error(err);
+        }
+        res.json(rows);
+    });
+});
+
 // app.get("/student/:id", eventFunction);
 // Create a get for /students
 app.get("/students", function(req, res) {
@@ -62,6 +65,29 @@ app.get("/students", function(req, res) {
         res.json(rows);
     });
 });
+
+// Get a module of a given code
+app.get("/module/:code", function(req, res) {
+    var sql = `SELECT * FROM Modules WHERE code = "${req.params.code}"`;
+    db.get(sql, function(err, row) {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.json(row);
+    })
+})
+
+// Get all modules
+app.get("/modules", function(req, res) {
+    var sql = "SELECT * FROM Modules";
+    db.all(sql, function(err, rows) {
+        if(err) {
+            return console.error(err);
+        }
+        res.json(rows);
+    });
+});
+
 
 // Start server on port 3000
 app.listen(3000);
