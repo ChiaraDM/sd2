@@ -66,7 +66,11 @@ db.each(sql, function(err, row) {
     console.log(`3rd Query:`, row.id + "\t" + row.name);
 });
 
-var sql = "SELECT Modules.name FROM Programmes, Modules, Programme_Modules WHERE Programmes.name = \"BSc Computer Science\" AND Programme_Modules.programme = Programmes.id AND Programme_Modules.module = Modules.code";
+var sql = `SELECT Modules.name 
+FROM Programmes, Modules, Programme_Modules 
+WHERE Programmes.name = "BSc Computer Science" 
+AND Programme_Modules.programme = Programmes.id 
+AND Programme_Modules.module = Modules.code`;
 db.each(sql, function(err, row) {
     if (err) {
         return console.error(err.message);

@@ -20,7 +20,8 @@ let db = new sqlite3.Database("students.db", function(err) {
 //    console.log("Row inserted into database.")
 //});
 
-db.run(`DELETE FROM Student WHERE id = \"100\"`, function(err){
+db.run(`DELETE FROM Student 
+WHERE id = \"100\"`, function(err){
     if (err) {
         return console.error(err.message);
     }
