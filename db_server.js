@@ -15,12 +15,13 @@ let db = new sqlite3.Database("students.db", function(err) {
 
 // Import express.js
 const express = require("express");
-
+const { connected } = require("process");
 // Create express app
 var app = express();
 
 // Add static files location
-app.use(express.static("static"));
+ 
+app.use(express.static("."));
 
 app.get("/student/:id", function(req, res) {
     var sql = `SELECT * FROM Student WHERE id = "${req.params.id}"`;
@@ -71,11 +72,11 @@ app.get("/module/:code", function(req, res) {
     var sql = `SELECT * FROM Modules WHERE code = "${req.params.code}"`;
     db.get(sql, function(err, row) {
         if (err) {
-            return console.error(err.message);
+            return console.error(err);
         }
         res.json(row);
     })
-})
+});
 
 // Get all modules
 app.get("/modules", function(req, res) {
