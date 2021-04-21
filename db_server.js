@@ -89,6 +89,20 @@ app.get("/modules", function(req, res) {
     });
 });
 
+// Get id, student name, programme name
+app.get("/students&programmes", function(req, res) {
+    var sql = `SELECT Student.id, Student.name as student, Programmes.name
+    FROM Student, Student_Programme, Programmes
+    WHERE Student_Programme.id = Student.id
+    AND Student_Programme.programme = Programmes.id`;
+    db.all(sql, function(err, rows) {
+        if(err) {
+            return console.error(err);
+        }
+        res.json(rows);
+    });
+});
+
 
 // Start server on port 3000
 app.listen(3000);
