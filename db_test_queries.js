@@ -78,6 +78,17 @@ db.each(sql, function(err, row) {
     console.log(`4th Query:`, row.name);
 });
 
+var sql = `SELECT Student.id, Student.name as student, Programmes.name
+FROM Student, Student_Programme, Programmes
+WHERE Student_Programme.id = Student.id
+AND Student_Programme.programme = Programmes.id`;
+db.each(sql, function(err, row) {
+    if (err) {
+        return console.error(err.message);
+    }
+    console.log(row.id + "\t" + row.student + "\t" + row.name);
+});
+
 // Close the database connection. 
 // Always close the connection when you are finished with it.
 // Function is callback when connection is closed.
