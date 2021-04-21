@@ -2,7 +2,18 @@
 This means faster code, but Javascript needs to be cleaner. */
 "use strict";
 
+class Programme {
+    #id;
+    #name;
 
+    constructor(id, name) {
+        this.#id = id;
+        this.#name = name;
+    }
+    programmeTableRow() {
+        return `<tr><td>${this.#name}</td></tr>`;
+    }
+}
 // A definition of a student
 class Student {
     // Student ID
@@ -39,7 +50,6 @@ function printStudents () {
         for (var row of result) {
             var student = new Student(row.id, row.student, row.name);
             students.push(student);
-            
         }
         // Build html for table.
         var html = `<table border="1">
@@ -67,10 +77,32 @@ function printStudents () {
             html += student.tableRow();
         }
         // End html table.
-        html += `</table>`
-        // Get the main element
+        html += `</table>` + "<br>";
+
+        $.getJSON("/programmes", function(result) {
+            var programmes = [];
+            for (var row of result) {
+                var programme = new Programme(row.id, row.name);
+                programmes.push(programme); 
+            }
+            html +=  `<table border="1">
+                <tr>
+                    <th>Programmes</th>
+                </tr>` ;
+            for (var programme of programmes) {
+                html += programme.programmeTableRow();
+            }
+            html += `</table>`
+            // Get the main element
         var main = document.getElementById("main");
         // Set the innerHTML to html
         main.innerHTML = html;
+          
+        })
+            
+        
     });
+      
+    
+    
 };
