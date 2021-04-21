@@ -20,6 +20,10 @@ class Student {
         this.#name = name;
     }
 
+    shortTableRow() {
+        return `<tr><td>${this.#id}</td><td>${this.#student}</td></tr>`;
+    }
+
     tableRow() {
         
         return `<tr><td>${this.#id}</td><td>${this.#student}</td><td>${this.#name}</td></tr>`; 
@@ -38,7 +42,19 @@ function printStudents () {
             
         }
         // Build html for table.
-        var html = `
+        var html = `<table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>` ;
+
+        for (var student of students) {
+            html += student.shortTableRow();
+        }
+        
+        html += `</table>`+ "<br>";
+
+        html += `
             <table border="1">
                 <tr>
                     <th>ID</th>
