@@ -96,13 +96,7 @@ function printStudents () {
             // Get the main element
         var main = document.getElementById("main");
         // Set the innerHTML to html
-        main.innerHTML = html;
-          
-        })
-            
-        
-    });
-      
-    
-    
+        main.innerHTML = html;  
+        })           
+    });  
 };
