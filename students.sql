@@ -44,13 +44,13 @@ INSERT INTO Programme_Modules VALUES('09UU0003','PHY020C103');
 INSERT INTO Programme_Modules VALUES('09UU0003','PHY020C104');
 INSERT INTO Programme_Modules VALUES('09UU0003','PHY020C105');
 INSERT INTO Programme_Modules VALUES('09UU0003','PHY020C106');
-CREATE TABLE Student(
+CREATE TABLE IF NOT EXISTS "Students"(
 id VARCHAR(3) PRIMARY KEY,
 name VARCHAR(50));
-INSERT INTO Student VALUES('001','Kevin Chalmers');
-INSERT INTO Student VALUES('002','Lisa Haskel');
-INSERT INTO Student VALUES('003','Arturo Araujo');
-INSERT INTO Student VALUES('004','Chiara De Matteis');
+INSERT INTO Students VALUES('001','Kevin Chalmers');
+INSERT INTO Students VALUES('002','Lisa Haskel');
+INSERT INTO Students VALUES('003','Arturo Araujo');
+INSERT INTO Students VALUES('004','Chiara De Matteis');
 CREATE TABLE Student_Programme(
 id VARCHAR(3),
 programme VARCHAR(10),
