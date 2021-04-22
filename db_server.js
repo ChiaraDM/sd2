@@ -20,11 +20,13 @@ const { connected } = require("process");
 var app = express();
 
 // Add static files location
+// (".") = to serve everything in the folder
+// ("static") = only static folder
  
 app.use(express.static("."));
 
 app.get("/student/:id", function(req, res) {
-    var sql = `SELECT * FROM Student WHERE id = "${req.params.id}"`;
+    var sql = `SELECT * FROM Students WHERE id = "${req.params.id}"`;
     db.get(sql, function(err, row) {
         if (err) {
             return console.error(err.message);
@@ -58,7 +60,7 @@ app.get("/programmes", function(req, res) {
 // app.get("/student/:id", eventFunction);
 // Create a get for /students
 app.get("/students", function(req, res) {
-    var sql = "SELECT * FROM Student";
+    var sql = "SELECT * FROM Students";
     db.all(sql , function(err, rows) {
         if (err) {
             return console.error(err);
@@ -91,9 +93,9 @@ app.get("/modules", function(req, res) {
 
 // Get id, student name, programme name
 app.get("/students&programmes", function(req, res) {
-    var sql = `SELECT Student.id, Student.name as student, Programmes.name
-    FROM Student, Student_Programme, Programmes
-    WHERE Student_Programme.id = Student.id
+    var sql = `SELECT Students.id, Students.name as student, Programmes.name
+    FROM Students, Student_Programme, Programmes
+    WHERE Student_Programme.id = Students.id
     AND Student_Programme.programme = Programmes.id`;
     db.all(sql, function(err, rows) {
         if(err) {
