@@ -53,6 +53,50 @@ app.get("/students", function(req, res) {
     });
 });
 
+// A get for programme id
+app.get("/programme/:id", function(req, res) {
+    var sql = `SELECT * FROM Programmes WHERE id = "${req.params.id}"`;
+    con.query(sql, function(err , results) {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.json(results[0]);
+    });
+});
+
+// A get for programmes
+app.get("/programmes", function(req, res) {
+    var sql = "SELECT * FROM Programmes";
+    con.query(sql, function(err, results) {
+        if(err) {
+            return console.error(err.messsage);
+        }
+        res.json(results);
+    });
+});
+
+// Get a module from a given code
+app.get("/module/:code", function(req, res) {
+    var sql = `SELECT * FROM Modules WHERE code = "${req.params.code}"`;
+    con.query(sql, function(err , results) {
+        if (err) {
+            return console.error(err.message);
+        }
+        res.json(results[0]);
+    });
+});
+
+// Get all modules
+app.get("/modules", function(req, res){ 
+    var sql = "SELECT * FROM Modules";
+    con.query(sql, function(err, results) {
+        if(err) {
+            return console.error(err.messsage);
+        }
+        res.json(results);
+    });
+});
+
 // Start server on port 3000
 app.listen(3000);
  
