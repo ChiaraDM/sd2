@@ -20,6 +20,26 @@ con.connect(function(err) {
     console.log("Connected to students database.");
 });
 
+// SQL query to run
+var sql = "SELECT * FROM Modules";
+
+// Execute SQL query, and run function on result
+con.query(sql, function(err, result) {
+    // If error display
+    if (err) {
+        return console.error(err.message);
+    }
+    // Print the code column and name from row separated by a tab \t
+    for (var row of result) {
+        console.log(row.code + "\t" + row.name);
+        /* PSEUDOCODE: 
+        rows = EXECUTE QUERY ON  Database
+        FOR EACH row IN rows
+            PRINT row["code"] TAB row["name"] */
+    };
+});
+
+
 /* Close the database connection.
 Always close the connection whern you are finished with it.
 Function is callback when connection is closed. */
