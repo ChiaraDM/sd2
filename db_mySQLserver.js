@@ -97,6 +97,22 @@ app.get("/modules", function(req, res){
     });
 });
 
+// Get id, student name, programme name
+app.get("/students&programmes", function(req, res) {
+    var sql = `SELECT students.id, students.name, programmes.name as programme
+    FROM students
+    LEFT JOIN student_programme
+    ON students.id=student_programme.id
+    LEFT JOIN programmes
+    ON student_programme.programme=programmes.id;`;
+    con.query(sql, function(err, results) {
+        if(err) {
+            return console.error(err.messsage);
+        }
+        res.json(results);
+    });
+});
+
 // Start server on port 3000
 app.listen(3000);
  
