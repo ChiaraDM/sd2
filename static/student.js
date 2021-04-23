@@ -19,25 +19,25 @@ class Student {
     // Student ID
     #id;
     // Student name
-    #student;
     #name;
+    #programme;
     
 
     // Creates a new instance (object) of type Student
-    constructor(id, student, name) {
+    constructor(id, name, programme) {
         // Set the id and name of the object instance
         this.#id = id;
-        this.#student = student;
         this.#name = name;
+        this.#programme = programme;
     }
 
     shortTableRow() {
-        return `<tr><td>${this.#id}</td><td>${this.#student}</td></tr>`;
+        return `<tr><td>${this.#id}</td><td>${this.#name}</td></tr>`;
     }
 
     tableRow() {
         
-        return `<tr><td>${this.#id}</td><td>${this.#student}</td><td>${this.#name}</td></tr>`; 
+        return `<tr><td>${this.#id}</td><td>${this.#name}</td><td>${this.#programme}</td></tr>`; 
     }
     
 }
@@ -48,14 +48,14 @@ function printStudents () {
         var students = [];
         // Iterate over data returned
         for (var row of result) {
-            var student = new Student(row.id, row.student, row.name);
+            var student = new Student(row.id, row.name, row.programme);
             students.push(student);
         }
         // Build html for table.
         var html = `<table border="1">
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th>Student Name</th>
             </tr>` ;
 
         for (var student of students) {
@@ -68,7 +68,7 @@ function printStudents () {
             <table border="1">
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Student Name</th>
                     <th>Programme</th>
                 </tr>
             `;
